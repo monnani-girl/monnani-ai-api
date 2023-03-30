@@ -36,7 +36,7 @@ class Req(BaseModel):
 
 @app.get("/")
 def hello():
-  return {"message":"monnani v0.9", "docker_img_tag":3}
+  return {"message":"monnani v0.9", "docker_img_tag":4}
 
 
 @app.post("/result/product")
@@ -53,9 +53,9 @@ async def upload_photo(req : Req):
   # face detection    
   image, faces = face_detect.detect_faces('./outImg/result.jpg')
   if len(faces) == 0:
-    return {"message" : "아무 얼굴도 탐지되지 않았습니다. 정면 사진을 넣어주세요."}
+    return {"message" : "얼굴이 감지되지 않았습니다. 정면 사진을 사용해주세요."}
   if len(faces) != 1:
-    return {"message" : '너무 많은 얼굴이 탐지되었습니다. 정확히 한 명만 나온 사진을 넣어주세요.'}
+    return {"message" : '너무 많은 얼굴이 탐지되었습니다. 한명의 얼굴만 촬영해주세요.'}
   face = faces[0]
   image = image[face['startY'] : face['endY'], face['startX'] : face['endX']]
   face_detect.save(image)
