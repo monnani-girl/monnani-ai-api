@@ -36,7 +36,7 @@ class Req(BaseModel):
 
 @app.get("/")
 def hello():
-  return {"message":"monnani v1.0"}
+  return {"message":"monnani v0.9", "docker_img_tag":3}
 
 
 @app.post("/result/product")
