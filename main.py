@@ -10,6 +10,8 @@ from pydantic import BaseModel
 import base64
 import json
 
+import face_detect
+
 app = FastAPI()
 
 origins = [
@@ -44,14 +46,22 @@ async def upload_photo(req : Req):
   
   base64_data = req.photo
   image_data = base64.b64decode(base64_data)
-
   UPLOAD_DIR = "./outImg"
   filename = "result.jpg"
   with open(os.path.join(UPLOAD_DIR, filename), 'wb') as f:
       f.write(image_data)
-      
+  # face detection    
+  image, faces = face_detect.detect_faces('./outImg/result.jpg')
+  if len(faces) == 0:
+    return {"message" : "아무 얼굴도 탐지되지 않았습니다. 정면 사진을 넣어주세요."}
+  if len(faces) != 1:
+    return {"message" : '너무 많은 얼굴이 탐지되었습니다. 정확히 한 명만 나온 사진을 넣어주세요.'}
+  face = faces[0]
+  image = image[face['startY'] : face['endY'], face['startX'] : face['endX']]
+  face_detect.save(image)
+
   items = ["pumpkin", "broccoli","potato","tangerine","carrot","cabbage"]
-  image_path2 = "./outImg/result.jpg"
+  image_path2 = "./outImg/detect_result.jpg"
   cand_dict = {}
   # 결과값이 작아야 같은 사람
   for item in items:  
