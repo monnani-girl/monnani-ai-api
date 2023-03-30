@@ -45,52 +45,44 @@ def get_model(device, weight_path):
     return model
 
 
-def parse_args() -> argparse.Namespace:
-    """
-    Parse the command line arguments.
 
-    Returns:
-        argparse.Namespace: contains the named arguments parsed.
-    """
-    parser = argparse.ArgumentParser(description="Face Similarity PyTorch")
-    parser.add_argument("-img1", "--image-path-1", help="Path to the first image", required=True, type=str, )
-    parser.add_argument("-img2", "--image-path-2", help="Path to the second image", required=True, type=str, )
-    parser.add_argument("-g", "--gpu", help="GPU ID to use. -1 for CPU.", required=False, type=int, default=-1)
-    parser.add_argument("-w", "--weight-path", help="Path to the trained model weights.", required=False, type=str,
-                        default="weights/face-siamese-crop.pt")
-    parser.add_argument('-t', '--threshold', help="Threshold to use for classifiaction", required=False, type=float, default=1.8)
-    args = parser.parse_args()
-    return args
-
-
-def main():
-    args = parse_args()
+def get_sim(image_path1, image_path2):  
+    gpu = -1
+    weight_path = "weights/face-siamese-crop.pt"
+    threshold = 1.8
     
     # Get the device
     device = 'cpu'
-    if args.gpu >= 0:
-        device = 'cuda:{}'.format(args.gpu)
+    if gpu >= 0:
+        device = 'cuda:{}'.format(gpu)
 
     # Initialize model and pre-processor
-    model = get_model(device, args.weight_path)
+    model = get_model(device, weight_path)
     transforms = preprocess.get_transforms_inference()
 
     # Predict!
     prob, pred = predict(
-        image_path1=args.image_path_1,
-        image_path2=args.image_path_2,
+        image_path1=image_path1,
+        image_path2=image_path2,
         model=model,
         transforms=transforms,
         device=device,
-        threshold=args.threshold,
+        threshold=threshold,
     )
 
     print('Dis-similarity score: {:.2f}'.format(prob))
     if pred == 1:
         print('Same person!')
+        # return 'same'
     else:
         print('Not the same person!')
+        # return 'not same'
+    return prob
 
-
+def main():
+    # res = get_sim("./data/potato.jpg", "./data/potato.jpg")
+    print("============")
+    # print(res)
+    
 if __name__ == '__main__':
     main()
