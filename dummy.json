@@ -1,6 +1,6 @@
 {
   "season": {
-    "weight": 1,
+    "weight": 2,
     "category": {
       "spring": ["pumpkin", "potato"],
       "summer": ["carrot", "pumpkin"],
@@ -10,7 +10,7 @@
   },
   "weather": {
     "question": "weather",
-    "weight": 1,
+    "weight": 2,
     "category": {
       "normal": ["cabbage", "potato"],
       "sunny": ["carrot", "pumpkin"],
@@ -19,7 +19,7 @@
     }
   },
   "feel": {
-    "weight": 1,
+    "weight": 2,
     "category": {
       "energetic": ["carrot", "pumpkin"],
       "angry": ["carrot", "pumpkin"],
@@ -28,7 +28,7 @@
     }
   },
   "travel": {
-    "weight": 2,
+    "weight": 3,
     "category": {
       "shopping": ["cabbage", "broccoli"],
       "running": ["carrot", "broccoli"],

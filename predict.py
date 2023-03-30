@@ -70,12 +70,12 @@ def get_sim(image_path1, image_path2):
         threshold=threshold,
     )
 
-    print('Dis-similarity score: {:.2f}'.format(prob))
-    if pred == 1:
-        print('Same person!')
+    # print('Dis-similarity score: {:.2f}'.format(prob))
+    # if pred == 1:
+        # print('Same person!')
         # return 'same'
-    else:
-        print('Not the same person!')
+    # else:
+        # print('Not the same person!')
         # return 'not same'
     return prob
 

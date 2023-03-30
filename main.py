@@ -88,7 +88,7 @@ async def upload_photo(req : Req):
   result = {}
   result["type"]=result_farm
   sales = []
-  translate_dict = {"carrot":"당근","pumpkin":"호박","cabbage":"양배추","tangerine":"귤","broccoli":"브로콜리","potato":"감자"}
+  translate_dict = {"carrot":"당근","pumpkin":"미니 밤호박","cabbage":"양배추","tangerine":"귤","broccoli":"브로콜리","potato":"감자"}
   with open("./sales.json","r", encoding="utf-8") as f :
     data =json.load(f)
     for content in data:
