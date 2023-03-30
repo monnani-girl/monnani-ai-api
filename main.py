@@ -22,13 +22,6 @@ class Req(BaseModel):
 def hello():
   return {"message":"monnani v1.0"}
 
-@app.get("/sim")
-def read_item( q: Optional[str] = None):
-  image_path1 = "./data/potato.jpg"
-  image_path2 = "./data/pumpkin.jpg"
-  res = predict.get_sim(image_path1, image_path2)
-  return res
-
 
 @app.post("/result/product")
 async def upload_photo(req : Req):
