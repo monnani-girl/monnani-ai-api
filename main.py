@@ -1,6 +1,7 @@
 from typing import Optional
 
 from fastapi import FastAPI,File, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 import predict
 import os
 import operator
@@ -10,6 +11,19 @@ import base64
 import json
 
 app = FastAPI()
+
+origins = [
+    "*"
+]
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 class Req(BaseModel):
     season: str
@@ -46,16 +60,6 @@ async def upload_photo(req : Req):
     cand_dict[item] = res
   tup = min(cand_dict.items(), key=operator.itemgetter(1))
   farm_count_dict[tup[0]] += photo_weight
-  
-  
-  
-  # if req.season =="spring":
-  #   farm_count_dict["pumpkin"]+=weight["season"]
-  #   farm_count_dict["potato"]+=weight["season"]
-  # elif req.season=="summer":
-  #   farm_count_dict["carrot"]+=weight["season"]
-  #   farm_count_dict["pumpkin"]+=weight["season"]
-    
     
   with open ("./dummy.json","r") as f :
     data = json.load(f)
