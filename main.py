@@ -33,7 +33,7 @@ app.add_middleware(
 
 @app.get("/")
 def hello():
-  return {"message":"monnani v0.9", "docker_img_tag":4}
+  return {"message":"monnani v0.9", "docker_img_tag":6}
 
 
 @app.post("/crop/products")
