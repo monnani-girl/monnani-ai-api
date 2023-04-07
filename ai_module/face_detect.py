@@ -2,8 +2,8 @@ import numpy as np
 import argparse
 import cv2
 
-PROTOTXT = 'model/deploy.prototxt.txt'
-MODEL = 'model/res10_300x300_ssd_iter_140000.caffemodel'
+PROTOTXT = 'ai_module/model/deploy.prototxt.txt'
+MODEL = 'ai_module/model/res10_300x300_ssd_iter_140000.caffemodel'
 
 def detect_faces(img_path):
     print("[INFO] loading model...")
@@ -38,7 +38,7 @@ def detect_faces(img_path):
 def save(image):
     
     image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    gray_result = "./outImg/detect_result.jpg"
+    gray_result = "./img_data/out_img/detect_src_face.jpg"
     cv2.imwrite(gray_result, image_gray)
 
 

@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 
-from src import dataset
+from recognition_module import dataset
 
 
 def train_iter(batch, model, optimizer, loss_func, device) -> float:

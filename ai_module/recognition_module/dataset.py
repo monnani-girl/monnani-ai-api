@@ -5,7 +5,7 @@ import pandas as pd
 import torch
 from typing import Any, Dict, Tuple
 
-from src import preprocess
+from recognition_module import preprocess
 
 
 class PairDataset:

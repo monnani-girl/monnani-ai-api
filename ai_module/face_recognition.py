@@ -4,7 +4,7 @@ import numpy as np
 import os
 import torch
 
-from src import models, preprocess
+from .recognition_module import models, preprocess
 
 
 def get_image_tensor(image_path: str, device, transforms) -> torch.Tensor:
@@ -19,7 +19,7 @@ def get_image_tensor(image_path: str, device, transforms) -> torch.Tensor:
     return torch.from_numpy(image).to(device)
 
 
-def predict(image_path1, image_path2, model, transforms, device, threshold):
+def get_predict(image_path1, image_path2, model, transforms, device, threshold):
     images1 = get_image_tensor(image_path1, device, transforms)
     images2 = get_image_tensor(image_path2, device, transforms)
 
@@ -48,7 +48,7 @@ def get_model(device, weight_path):
 
 def get_sim(image_path1, image_path2):  
     gpu = -1
-    weight_path = "weights/face-siamese-crop.pt"
+    weight_path = "ai_module/weights/face-siamese-crop.pt"
     threshold = 1.8
     
     # Get the device
@@ -61,7 +61,7 @@ def get_sim(image_path1, image_path2):
     transforms = preprocess.get_transforms_inference()
 
     # Predict!
-    prob, pred = predict(
+    prob, pred = get_predict(
         image_path1=image_path1,
         image_path2=image_path2,
         model=model,
