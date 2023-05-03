@@ -80,9 +80,8 @@ def get_sim(image_path1, image_path2):
     return prob
 
 def main():
-    # res = get_sim("./data/potato.jpg", "./data/potato.jpg")
-    print("============")
-    # print(res)
+    res = get_sim("./data/potato.jpg", "./data/potato.jpg")
+    print(res)
     
 if __name__ == '__main__':
     main()

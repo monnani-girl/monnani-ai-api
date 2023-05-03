@@ -12,7 +12,7 @@ env:
   # build and push 할 docker image 이름
   IMAGE_NAME: monnani-ai
   # build and push 할 docker image의 tag
-  TAG: latest
+  TAG: 7
   IS_PUSH: ${{ github.event_name != 'pull_request' }}
 
 jobs:
