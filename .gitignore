@@ -189,5 +189,3 @@ dmypy.json
 # Pycharm related
 .idea/
 
-
-*.pt
