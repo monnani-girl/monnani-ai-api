@@ -23,4 +23,4 @@ app.include_router(api_router)
 
 @app.get("/")
 def hello():
-  return {"message":"monnani v1.0", "docker_img_tag":7}
+  return {"message":"monnani v1.0", "docker_img_tag":8}
